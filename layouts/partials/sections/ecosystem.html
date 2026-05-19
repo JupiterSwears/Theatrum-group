@@ -1,0 +1,46 @@
+{{ $e := .Params.ecosystem }}
+<section class="section ecosystem" id="ecosysteem">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow-block eyebrow-block--tan">{{ $e.eyebrow }}</span>
+        <h2>{{ $e.title_html | safeHTML }}</h2>
+      </div>
+      <p>{{ $e.body | safeHTML }}</p>
+    </div>
+
+    <div class="ecosystem__layout">
+      <div class="reveal">
+        <div class="eco-wheel">
+          {{ range $e.quadrants }}
+            <div class="eco-quad eco-quad--{{ .key }}">
+              <h4>{{ .title }}</h4>
+              <p>{{ .body }}</p>
+            </div>
+          {{ end }}
+          <div class="eco-wheel__center">
+            {{ partial "group-glyph.html" (dict "ink" "#fff" "tan" "var(--th-tan-300)" "class" "glyph") }}
+            <div class="wm">Theatrum</div>
+            <div class="sig">{{ $e.center_signature | safeHTML }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" data-reveal-delay="120">
+        <div class="eco-list">
+          <div class="eco-list__head">{{ $e.list_title }}</div>
+          {{ range $e.list }}
+            <div class="eco-list__row">
+              <div class="med">{{ partial "icon.html" (dict "name" .icon "size" 16) }}</div>
+              <div>
+                <div class="name">{{ .name }}</div>
+                <div class="desc">{{ .desc }}</div>
+              </div>
+              <div class="tag">{{ .tag }}</div>
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

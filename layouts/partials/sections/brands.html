@@ -1,0 +1,31 @@
+{{ $b := .Params.brands }}
+{{ $glyphColors := dict
+  "group"    (dict "ink" "var(--th-ink-900)"      "tan" "var(--th-tan-700)")
+  "live"     (dict "ink" "var(--th-live-800)"     "tan" "var(--th-live-300)")
+  "academy"  (dict "ink" "var(--th-academy-800)"  "tan" "var(--th-academy-300)")
+  "services" (dict "ink" "var(--th-services-800)" "tan" "var(--th-services-300)")
+}}
+<section class="section section--tight brands" id="brands">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow-block">{{ $b.eyebrow }}</span>
+        <h2>{{ $b.title_html | safeHTML }}</h2>
+      </div>
+      <p>{{ $b.body | safeHTML }}</p>
+    </div>
+
+    <div class="brands-grid">
+      {{ range $i, $c := $b.cards }}
+        {{ $gc := index $glyphColors $c.key }}
+        <div class="brand-card reveal" data-brand="{{ $c.key }}" data-reveal-delay="{{ mul $i 80 }}">
+          {{ partial "group-glyph.html" (dict "ink" $gc.ink "tan" $gc.tan "class" "brand-card__glyph") }}
+          <div class="brand-card__wm">THEATRUM<span class="dot">.</span><span class="sub">{{ $c.sub }}</span></div>
+          <div class="brand-card__role">{{ $c.role }}</div>
+          <p class="brand-card__desc">{{ $c.desc }}</p>
+          <a class="brand-card__link" href="#">{{ $c.link }} {{ partial "icon.html" (dict "name" "arrowRight" "size" 14) }}</a>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="{{ .Params.page_lang | default site.Language.Lang | default "nl" }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ .Title }}</title>
+  <meta name="description" content="{{ .Params.description }}" />
+  <link rel="stylesheet" href="{{ "css/theatrum.css" | relURL }}" />
+  <link rel="stylesheet" href="{{ "css/landing.css" | relURL }}" />
+</head>
+<body>
+  {{ block "main" . }}{{ end }}
+  <script src="{{ "js/landing.js" | relURL }}" defer></script>
+</body>
+</html>

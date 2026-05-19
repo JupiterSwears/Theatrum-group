@@ -1,0 +1,12 @@
+{{ $q := .Params.quote }}
+<section class="quote-band">
+  <div class="container">
+    <div class="quote-band__inner reveal">
+      <div class="quote-band__mark">&ldquo;</div>
+      <div>
+        <p>{{ $q.body_html | safeHTML }}</p>
+        <div class="quote-band__sig">{{ $q.signature }}</div>
+      </div>
+    </div>
+  </div>
+</section>

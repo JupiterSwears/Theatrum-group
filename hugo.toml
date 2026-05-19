@@ -1,0 +1,10 @@
+baseURL = '/'
+locale = 'nl'
+title = 'Theatrum.Live — Realtime ruimtelijke besluitvorming'
+
+disableKinds = ['taxonomy', 'term', 'RSS']
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

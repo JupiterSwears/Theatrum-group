@@ -1,0 +1,112 @@
+{{ $pm := .Params.platform_mock }}
+<div class="platform-card reveal" data-reveal-delay="120">
+  <div class="platform-card__chrome">
+    <span class="platform-card__dot"></span>
+    <span class="platform-card__dot"></span>
+    <span class="platform-card__dot"></span>
+    <span class="platform-card__url">{{ $pm.url }}</span>
+  </div>
+  <div class="platform-card__body">
+
+    <div class="platform-card__rail" data-rail>
+      <div class="label">{{ $pm.rail_layers_label }}</div>
+      {{ range $pm.rail_layers }}
+        <div class="layer-row{{ if .active }} is-active{{ end }}" data-layer="{{ .id }}">
+          <span class="swatch swatch--{{ .swatch }}"></span>
+          <span>{{ .name }}</span>
+          <span class="check"></span>
+        </div>
+      {{ end }}
+
+      <div class="label" style="margin-top: 12px;">{{ $pm.rail_parties_label }}</div>
+      {{ range $pm.rail_parties }}
+        <div class="layer-row" style="padding-left: 6px;">
+          <span style="width: 18px; height: 18px; border-radius: 50%; background: var(--th-tan-200); color: var(--th-ink-900); font-family: var(--font-display); font-size: 9px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center;">{{ substr . 0 1 }}</span>
+          <span style="font-size: 12px;">{{ . }}</span>
+          <span style="margin-left: auto; width: 6px; height: 6px; border-radius: 50%; background: var(--th-success);"></span>
+        </div>
+      {{ end }}
+    </div>
+
+    <div class="platform-card__viewport">
+      <svg class="viewport-svg" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M40 0 L0 0 0 40" fill="none" stroke="rgba(14,26,43,0.06)" stroke-width="1" />
+          </pattern>
+          <linearGradient id="bldGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#D2D7DD" />
+            <stop offset="1" stop-color="#AAB3BF" />
+          </linearGradient>
+          <linearGradient id="newGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#C7B398" />
+            <stop offset="1" stop-color="#A28B6B" />
+          </linearGradient>
+        </defs>
+        <rect width="600" height="400" fill="url(#grid)" />
+        <path d="M 0 320 Q 120 280 240 310 T 600 290 L 600 400 L 0 400 Z" fill="#D2D7DD" opacity="0.5" />
+        <g stroke="#AAB3BF" stroke-width="2" fill="none">
+          <line x1="0" y1="180" x2="600" y2="180" />
+          <line x1="0" y1="260" x2="600" y2="260" />
+          <line x1="220" y1="0" x2="220" y2="400" />
+          <line x1="420" y1="0" x2="420" y2="400" />
+        </g>
+        {{ $existing := slice
+          (slice 40 40 60 40) (slice 110 40 70 50) (slice 40 100 60 60)
+          (slice 240 30 50 50) (slice 300 30 60 40) (slice 370 40 40 50)
+          (slice 240 100 90 50) (slice 345 100 65 50)
+          (slice 440 40 50 50) (slice 500 40 70 40) (slice 440 110 130 40)
+          (slice 40 200 100 40) (slice 160 200 40 40) (slice 440 200 120 40) }}
+        {{ range $existing }}
+          <rect x="{{ index . 0 }}" y="{{ index . 1 }}" width="{{ index . 2 }}" height="{{ index . 3 }}" fill="url(#bldGrad)" stroke="rgba(14,26,43,0.18)" stroke-width="0.8" />
+        {{ end }}
+        <g class="scenario-buildings" data-scenario-buildings>
+          {{ $base := slice
+            (slice 240 200 60 50) (slice 320 200 50 50)
+            (slice 240 270 50 30) (slice 310 270 60 30)
+            (slice 380 200 30 50) (slice 380 270 30 30) }}
+          {{ range $base }}
+            <rect class="b-base" x="{{ index . 0 }}" y="{{ index . 1 }}" width="{{ index . 2 }}" height="{{ index . 3 }}" fill="url(#newGrad)" stroke="#6F5E45" stroke-width="0.8" />
+          {{ end }}
+          {{ $extra1 := slice (slice 160 270 40 30) (slice 100 200 50 40) }}
+          {{ range $extra1 }}
+            <rect class="b-s1" x="{{ index . 0 }}" y="{{ index . 1 }}" width="{{ index . 2 }}" height="{{ index . 3 }}" fill="url(#newGrad)" stroke="#6F5E45" stroke-width="0.8" />
+          {{ end }}
+          {{ $extra2 := slice (slice 50 270 60 30) (slice 430 280 70 30) }}
+          {{ range $extra2 }}
+            <rect class="b-s2" x="{{ index . 0 }}" y="{{ index . 1 }}" width="{{ index . 2 }}" height="{{ index . 3 }}" fill="url(#newGrad)" stroke="#6F5E45" stroke-width="0.8" />
+          {{ end }}
+        </g>
+        <rect x="234" y="194" width="180" height="116" rx="2" fill="none" stroke="#0E1A2B" stroke-width="1.5" stroke-dasharray="4 4" />
+      </svg>
+
+      <div class="viewport-overlay">
+        {{ range $pm.pins }}
+          <div class="viewport-pin {{ .class }}" style="{{ .style | safeCSS }}">{{ .label }}</div>
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="platform-card__inspector">
+      <div>
+        <div class="eyebrow" style="margin-bottom: 8px;">{{ $pm.inspector_eyebrow }}</div>
+        <div class="scenario-tabs" data-scenario-tabs>
+          <button data-scenario="0">A</button>
+          <button class="is-active" data-scenario="1">B</button>
+          <button data-scenario="2">C</button>
+        </div>
+      </div>
+      <div class="kpi-stack" data-kpi-stack>
+        <div class="kpi-row"><span class="lbl">Doorlooptijd</span><span class="val">12<span style="font-size: 11px; color: var(--color-fg-secondary); margin-left: 4px;">wk</span><span class="delta">−68%</span></span></div>
+        <div class="kpi-row" data-kpi="woningen"><span class="lbl">Woningen</span><span class="val">1.580<span class="delta">+27%</span></span></div>
+        <div class="kpi-row" data-kpi="groen"><span class="lbl">Groen</span><span class="val">31%<span class="delta">+4%</span></span></div>
+        <div class="kpi-row" data-kpi="stikstof"><span class="lbl">Stikstof</span><span class="val">68<span class="delta">−12%</span></span></div>
+        <div class="kpi-row"><span class="lbl">Draagvlak</span><span class="val">78%<span class="delta">+11%</span></span></div>
+      </div>
+      <div style="padding: 10px; border: 1px solid var(--th-tan-300); border-radius: var(--radius-xs); background: var(--th-tan-50); font-size: 11.5px; line-height: 1.45; color: var(--th-ink-700);">
+        <span style="display: inline-block; font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--th-tan-800); margin-bottom: 4px;">{{ $pm.advice_eyebrow }}</span>
+        <div>{{ $pm.advice_body }}</div>
+      </div>
+    </div>
+  </div>
+</div>

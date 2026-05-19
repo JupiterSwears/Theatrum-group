@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ partial "sections/nav.html" . }}
+<main>
+  {{ partial "sections/hero.html" . }}
+  {{ partial "sections/problem.html" . }}
+  {{ partial "sections/platform.html" . }}
+  {{ partial "sections/ecosystem.html" . }}
+  {{ partial "sections/traject.html" . }}
+  {{ partial "sections/impact.html" . }}
+  {{ if .Params.quote.show }}{{ partial "sections/quote-band.html" . }}{{ end }}
+  {{ partial "sections/brands.html" . }}
+  {{ partial "sections/cta-band.html" . }}
+</main>
+{{ partial "sections/footer.html" . }}
+{{ end }}

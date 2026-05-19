@@ -1,0 +1,27 @@
+{{ $c := .Params.cta }}
+<section class="cta-band" id="aanmelden">
+  <div class="container cta-band__inner">
+    {{ range $c.columns }}
+      <div class="cta-col">
+        <div class="med">{{ partial "icon.html" (dict "name" .icon "size" 22) }}</div>
+        <div>
+          <h4>{{ .title_html | safeHTML }}</h4>
+          <p>{{ .body_html | safeHTML }}</p>
+          <div style="margin-top: 16px;">
+            <button class="btn btn--{{ .button_variant }}">
+              <span>{{ .button_label }}</span>
+              <span class="arr"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+    <div class="cta-band__brand">
+      <div class="cta-band__wm">
+        <img src="{{ "assets/logo-glyph-group.svg" | relURL }}" alt="" />
+        THEATRUM<span class="dot">.</span><span class="sub">GROUP</span>
+      </div>
+      <div class="cta-band__sig">{{ $c.signature }}</div>
+    </div>
+  </div>
+</section>

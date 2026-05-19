@@ -1,0 +1,36 @@
+{{ $p := .Params.problem }}
+<section class="section problem" id="probleem">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow-block">{{ $p.eyebrow }}</span>
+        <h2>{{ $p.title_html | safeHTML }}</h2>
+      </div>
+      <p>{{ $p.body | safeHTML }}</p>
+    </div>
+
+    <div class="problem-grid">
+      {{ range $i, $c := $p.cards }}
+        <div class="problem-card reveal" data-reveal-delay="{{ mul $i 60 }}">
+          <div class="problem-card__med">{{ partial "icon.html" (dict "name" $c.icon "size" 22) }}</div>
+          <h3>{{ $c.title }}</h3>
+          <p>{{ $c.body }}</p>
+        </div>
+      {{ end }}
+    </div>
+
+    <div class="transition reveal">
+      <div class="transition__from">
+        <span class="lbl">{{ $p.transition.from_label }}</span>
+        <span class="val">{{ $p.transition.from_value }}</span>
+      </div>
+      <div class="transition__arrow">
+        {{ partial "icon.html" (dict "name" "arrowRight" "size" 26 "stroke" 2.4) }}
+      </div>
+      <div class="transition__to">
+        <span class="lbl">{{ $p.transition.to_label }}</span>
+        <span class="val">{{ $p.transition.to_value }}</span>
+      </div>
+    </div>
+  </div>
+</section>

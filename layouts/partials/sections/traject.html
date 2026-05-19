@@ -1,0 +1,26 @@
+{{ $t := .Params.traject }}
+<section class="section traject" id="traject">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow-block">{{ $t.eyebrow }}</span>
+        <h2>{{ $t.title_html | safeHTML }}</h2>
+      </div>
+      <p>{{ $t.body | safeHTML }}</p>
+    </div>
+
+    <div class="traject__weeks">
+      <div class="traject__line"></div>
+      <div class="traject__grid">
+        {{ range $i, $s := $t.steps }}
+          <div class="traject__step reveal" data-reveal-delay="{{ mul $i 80 }}">
+            <div class="traject__num">{{ add $i 1 }}</div>
+            <div class="traject__week">{{ $s.week }}</div>
+            <h4 class="traject__title">{{ $s.title }}</h4>
+            <p class="traject__desc">{{ $s.body }}</p>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>

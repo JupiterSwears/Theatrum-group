@@ -1,0 +1,281 @@
+/* ============================================================
+   THEATRUM DESIGN SYSTEM — COLORS & TYPE TOKENS
+   ------------------------------------------------------------
+   Two layers:
+     1. BASE tokens (--th-...)   →  raw palette + scales
+     2. SEMANTIC tokens          →  what to actually reach for
+   ============================================================ */
+
+/* ---------- Webfonts (Google Fonts fallback — see README) ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+
+:root {
+  /* ============================================================
+     1. BASE COLOR PALETTE
+     ============================================================ */
+
+  /* — Neutrals / brand spine — */
+  --th-ink-900: #0E1A2B;   /* dark navy used on dark band, near-black with cool tint */
+  --th-ink-800: #16243A;
+  --th-ink-700: #1F3145;
+  --th-ink-600: #2C3E55;
+  --th-ink-500: #4A5A6E;
+  --th-ink-400: #768495;
+  --th-ink-300: #AAB3BF;
+  --th-ink-200: #D2D7DD;
+  --th-ink-100: #E9ECEF;
+  --th-ink-50:  #F4F6F8;
+
+  /* — Group accent: warm taupe (the "tan rule" line in every layout) — */
+  --th-tan-900: #6F5E45;
+  --th-tan-800: #8A765A;
+  --th-tan-700: #A28B6B;   /* primary tan — wordmark accent, dividers, key glyphs */
+  --th-tan-600: #B59E80;
+  --th-tan-500: #C7B398;
+  --th-tan-400: #D9C9B3;
+  --th-tan-300: #E6DAC8;
+  --th-tan-200: #EFE6D7;
+  --th-tan-100: #F5EFE4;   /* cream-paper background tint */
+  --th-tan-50:  #FBF8F2;
+
+  /* — Page paper — */
+  --th-paper:        #FAFAF7;  /* off-white wash behind infographics */
+  --th-paper-pure:   #FFFFFF;
+
+  /* — Sub-brand: Theatrum.Live (purple) — */
+  --th-live-900: #2A1357;
+  --th-live-800: #3B1F6B;   /* primary deep purple — wordmark */
+  --th-live-700: #5236A0;
+  --th-live-500: #8E72C2;
+  --th-live-300: #A78EC7;   /* light pair in logo */
+  --th-live-100: #E6DCEF;
+
+  /* — Sub-brand: Theatrum.Academy (blue) — */
+  --th-academy-900: #122847;
+  --th-academy-800: #1F3F66;  /* primary navy — wordmark */
+  --th-academy-700: #2F5A8C;
+  --th-academy-500: #5C84AC;
+  --th-academy-300: #7BA5C8;  /* light pair in logo */
+  --th-academy-100: #DCE6F1;
+
+  /* — Sub-brand: Theatrum.Services (green) — */
+  --th-services-900: #143420;
+  --th-services-800: #1E4A2E;  /* primary forest green — wordmark */
+  --th-services-700: #2E6B43;
+  --th-services-500: #5C8C66;
+  --th-services-300: #86A982;  /* light pair in logo */
+  --th-services-100: #DCE8D9;
+
+  /* — Functional / semantic state — */
+  --th-success: #2E6B43;
+  --th-warning: #B58838;
+  --th-danger:  #A53A2E;
+  --th-info:    #2F5A8C;
+
+  /* ============================================================
+     2. SEMANTIC COLOR TOKENS  (use these in product code)
+     ============================================================ */
+
+  /* Surfaces */
+  --color-bg:           var(--th-paper);
+  --color-bg-elevated:  var(--th-paper-pure);
+  --color-bg-inverse:   var(--th-ink-900);
+  --color-bg-muted:     var(--th-tan-100);
+  --color-bg-band:      var(--th-ink-900);  /* dark CTA band at page bottom */
+
+  /* Foreground / text */
+  --color-fg:           var(--th-ink-900);
+  --color-fg-secondary: var(--th-ink-500);
+  --color-fg-muted:     var(--th-ink-400);
+  --color-fg-on-dark:   #FFFFFF;
+  --color-fg-on-dark-2: var(--th-tan-300);
+  --color-fg-accent:    var(--th-tan-700);   /* the "écht anders" / tan-highlighted word */
+
+  /* Borders / rules */
+  --color-border:        var(--th-ink-200);
+  --color-border-strong: var(--th-ink-700);
+  --color-border-accent: var(--th-tan-700);
+  --color-rule:          var(--th-tan-700);   /* the hairline under wordmarks */
+
+  /* Brand accents (per surface family) */
+  --brand-primary:     var(--th-ink-900);
+  --brand-accent:      var(--th-tan-700);
+  --brand-live:        var(--th-live-800);
+  --brand-academy:     var(--th-academy-800);
+  --brand-services:    var(--th-services-800);
+
+  /* ============================================================
+     3. TYPE STACK
+     ============================================================ */
+
+  --font-display: 'Montserrat', 'Helvetica Neue', system-ui, sans-serif;
+  --font-body:    'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'SFMono-Regular', Menlo, monospace;
+
+  /* Base type ramps */
+  --fs-display-xl: 72px;
+  --fs-display-l:  56px;
+  --fs-h1:         40px;
+  --fs-h2:         28px;
+  --fs-h3:         20px;
+  --fs-h4:         16px;
+  --fs-body:       16px;
+  --fs-body-sm:    14px;
+  --fs-caption:    12px;
+  --fs-eyebrow:    11px;
+
+  --lh-tight:   1.05;
+  --lh-snug:    1.2;
+  --lh-normal:  1.45;
+  --lh-loose:   1.65;
+
+  --ls-eyebrow: 0.16em;   /* the all-caps tracked label everywhere on infographics */
+  --ls-wordmark: 0.08em;
+  --ls-tight:   -0.02em;
+  --ls-normal:   0;
+
+  /* ============================================================
+     4. SPACING, RADIUS, SHADOW
+     ============================================================ */
+
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3:  12px;
+  --s-4:  16px;
+  --s-5:  24px;
+  --s-6:  32px;
+  --s-7:  48px;
+  --s-8:  64px;
+  --s-9:  96px;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+
+  /* Theatrum cards: very modest shadows, mostly hairline borders. */
+  --shadow-1: 0 1px 2px rgba(14, 26, 43, 0.06);
+  --shadow-2: 0 4px 14px rgba(14, 26, 43, 0.08);
+  --shadow-3: 0 12px 40px rgba(14, 26, 43, 0.12);
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0.0, 0.0, 1.0);
+  --ease-emphasized: cubic-bezier(0.2, 0.7, 0.1, 1.0);
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 420ms;
+}
+
+/* ============================================================
+   5. SEMANTIC TYPE CLASSES
+   ============================================================ */
+
+.t-display-xl,
+.t-display-l,
+.t-h1,
+.t-h2,
+.t-h3,
+.t-wordmark,
+.t-eyebrow {
+  font-family: var(--font-display);
+  color: var(--color-fg);
+}
+
+.t-display-xl {
+  font-weight: 800;
+  font-size: var(--fs-display-xl);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  text-transform: uppercase;
+}
+
+.t-display-l {
+  font-weight: 800;
+  font-size: var(--fs-display-l);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  text-transform: uppercase;
+}
+
+.t-h1 {
+  font-weight: 800;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-snug);
+  letter-spacing: -0.01em;
+}
+
+.t-h2 {
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-snug);
+}
+
+.t-h3 {
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+}
+
+.t-eyebrow {
+  font-weight: 700;
+  font-size: var(--fs-eyebrow);
+  line-height: 1;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-fg-secondary);
+}
+
+.t-wordmark {
+  font-weight: 700;
+  letter-spacing: var(--ls-wordmark);
+  text-transform: uppercase;
+}
+
+/* Body */
+.t-body,
+.t-body-sm,
+.t-caption,
+.t-lead {
+  font-family: var(--font-body);
+  color: var(--color-fg);
+}
+
+.t-lead {
+  font-size: 18px;
+  line-height: var(--lh-normal);
+  font-weight: 400;
+  color: var(--color-fg-secondary);
+}
+
+.t-body {
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  font-weight: 400;
+}
+
+.t-body-sm {
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-normal);
+}
+
+.t-caption {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-normal);
+  color: var(--color-fg-secondary);
+}
+
+/* The signature "accent word" — used to highlight a single word in a headline (e.g. "écht anders") */
+.t-accent-word {
+  color: var(--color-fg-accent);
+}
+
+/* The hairline rule under wordmarks */
+.t-rule {
+  display: inline-block;
+  width: 64px;
+  height: 1px;
+  background: var(--color-rule);
+  vertical-align: middle;
+}

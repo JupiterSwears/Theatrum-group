@@ -1,0 +1,20 @@
+{{ $nav := .Params.nav }}
+<header class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href="#top">
+      <img src="{{ "assets/logo-glyph-group.svg" | relURL }}" alt="" class="nav__glyph" />
+      <div class="nav__wordmark">
+        THEATRUM<span class="dot">.</span><span class="sub">LIVE</span>
+      </div>
+    </a>
+    <nav class="nav__links">
+      {{ range $nav.links }}
+        <a class="nav__link" href="{{ .href }}">{{ .label }}</a>
+      {{ end }}
+    </nav>
+    <button class="btn btn--primary">
+      <span>{{ $nav.cta_label }}</span>
+      <span class="arr"></span>
+    </button>
+  </div>
+</header>

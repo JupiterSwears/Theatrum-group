@@ -1,0 +1,7 @@
+{{- $ink := .ink | default "var(--th-ink-900)" -}}
+{{- $tan := .tan | default "var(--th-tan-700)" -}}
+{{- $class := .class | default "" -}}
+<svg viewBox="0 0 200 200" class="{{ $class }}" role="img" aria-label="Theatrum">
+  <path d="M 26 22 L 90 22 L 90 48 L 52 48 L 52 122 L 110 122 L 110 100 L 134 100 L 134 146 L 26 146 Z" fill="{{ $ink }}" />
+  <path d="M 174 178 L 110 178 L 110 152 L 148 152 L 148 78 L 90 78 L 90 100 L 66 100 L 66 54 L 174 54 Z" fill="{{ $tan }}" />
+</svg>

@@ -1,0 +1,12 @@
+{{ $f := .Params.footer }}
+<footer class="footer">
+  <div class="container footer__inner">
+    <div>{{ $f.copyright }}</div>
+    <div class="footer__links">
+      {{ range $f.links }}
+        <a href="{{ .href }}">{{ .label }}</a>
+      {{ end }}
+    </div>
+    <div class="signature" style="color: var(--th-tan-300);">{{ $f.signature }}</div>
+  </div>
+</footer>

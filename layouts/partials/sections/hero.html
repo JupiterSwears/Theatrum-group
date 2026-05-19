@@ -1,0 +1,38 @@
+{{ $h := .Params.hero }}
+<section class="hero" id="top">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div>
+      <div class="hero__eyebrow-row">
+        <span class="rule rule--wide" aria-hidden="true"></span>
+        <div class="eyebrow">{{ $h.eyebrow }}</div>
+      </div>
+      <h1>
+        {{ $h.title_line1 }}<br />
+        {{ $h.title_line2_prefix }}{{- "" -}}
+        {{- if eq $h.accent_word "echt" -}}
+          <span class="accent">écht anders.</span>
+        {{- else if eq $h.accent_word "samen" -}}
+          <span>écht </span><span class="accent">samen.</span>
+        {{- else if eq $h.accent_word "sneller" -}}
+          <span>écht </span><span class="accent">sneller.</span>
+        {{- end -}}
+      </h1>
+      <p class="hero__lead">{{ $h.lead | safeHTML }}</p>
+      <div class="hero__cta">
+        <button class="btn btn--primary"><span>{{ $h.cta_primary }}</span><span class="arr"></span></button>
+        <button class="btn btn--ghost"><span>{{ $h.cta_secondary }}</span></button>
+      </div>
+      <div class="hero__meta">
+        {{ range $h.meta }}
+          <div class="hero__meta-item">
+            <strong>{{ .value }}</strong>
+            <span>{{ .label }}</span>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+
+    {{ partial "sections/platform-mock.html" . }}
+  </div>
+</section>

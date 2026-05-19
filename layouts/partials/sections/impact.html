@@ -1,0 +1,22 @@
+{{ $i := .Params.impact }}
+<section class="section" id="impact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow-block">{{ $i.eyebrow }}</span>
+        <h2>{{ $i.title_html | safeHTML }}</h2>
+      </div>
+      <p>{{ $i.body | safeHTML }}</p>
+    </div>
+
+    <div class="impact-grid">
+      {{ range $idx, $c := $i.cards }}
+        <div class="impact-card reveal" data-reveal-delay="{{ mul $idx 80 }}">
+          <div class="lbl">{{ $c.label }}</div>
+          <div class="num">{{ $c.num }}<span class="unit">{{ $c.unit }}</span></div>
+          <p class="desc">{{ $c.desc }}</p>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+{{ $p := .Params.platform }}
+<section class="section" id="platform">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow-block">{{ $p.eyebrow }}</span>
+        <h2>{{ $p.title_html | safeHTML }}</h2>
+      </div>
+      <p>{{ $p.body | safeHTML }}</p>
+    </div>
+
+    <div class="platform-explain">
+      <div class="feature-list reveal">
+        {{ range $p.features }}
+          <div class="feature-row">
+            <div class="feature-row__med">{{ partial "icon.html" (dict "name" .icon "size" 22) }}</div>
+            <div>
+              <h4>{{ .title }}</h4>
+              <p>{{ .body }}</p>
+            </div>
+          </div>
+        {{ end }}
+      </div>
+
+      <div class="reveal" data-reveal-delay="120">
+        <div class="platform-aside">
+          <div class="platform-aside__top-rule"></div>
+          <div class="eyebrow" style="margin-bottom: 12px;">Niet</div>
+          <ul class="platform-aside__not">
+            {{ range $p.aside.not_list }}
+              <li>
+                <span class="not-bullet"><span class="not-bullet__dash"></span></span>
+                <span>{{ . }}</span>
+              </li>
+            {{ end }}
+          </ul>
+          <div class="platform-aside__divider"></div>
+          <div class="eyebrow" style="color: var(--th-tan-800); margin-bottom: 12px;">Wél</div>
+          <p class="platform-aside__yes">{{ $p.aside.yes_lead_html | safeHTML }}</p>
+          <p class="platform-aside__yes-body">{{ $p.aside.yes_body }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
